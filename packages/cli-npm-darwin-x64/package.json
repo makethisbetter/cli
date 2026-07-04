@@ -1,0 +1,23 @@
+{
+  "name": "@makethisbetter/cli-darwin-x64",
+  "version": "1.0.2",
+  "description": "Make This Better CLI binary for macOS Intel",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "bin": {
+    "makethisbetter": "bin/makethisbetter"
+  },
+  "files": [
+    "bin/"
+  ],
+  "license": "MIT",
+  "homepage": "https://makethisbetter.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makethisbetter/cli.git"
+  }
+}
