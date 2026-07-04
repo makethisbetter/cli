@@ -1,0 +1,12 @@
+{
+  "name": "@makethisbetter/cli-darwin-arm64",
+  "version": "1.0.0",
+  "description": "Make This Better CLI binary for macOS Apple Silicon",
+  "os": ["darwin"],
+  "cpu": ["arm64"],
+  "bin": { "makethisbetter": "bin/makethisbetter" },
+  "files": ["bin/"],
+  "license": "MIT",
+  "homepage": "https://makethisbetter.dev",
+  "repository": { "type": "git", "url": "https://github.com/makethisbetter/cli.git" }
+}
