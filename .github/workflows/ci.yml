@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write  # needed for release creation
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: ['1.21', '1.22', '1.23']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+      - run: go vet ./...
+      - run: go test ./... -race -count=1
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      - name: Build binaries
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          LDFLAGS="-X github.com/makethisbetter/cli/cmd.version=${VERSION}"
+          mkdir -p dist
+          GOOS=darwin GOARCH=arm64 go build -ldflags "$LDFLAGS" -o dist/makethisbetter-darwin-arm64 .
+          GOOS=darwin GOARCH=amd64 go build -ldflags "$LDFLAGS" -o dist/makethisbetter-darwin-x64 .
+          GOOS=linux GOARCH=arm64 go build -ldflags "$LDFLAGS" -o dist/makethisbetter-linux-arm64 .
+          GOOS=linux GOARCH=amd64 go build -ldflags "$LDFLAGS" -o dist/makethisbetter-linux-x64 .
+          GOOS=windows GOARCH=amd64 go build -ldflags "$LDFLAGS" -o dist/makethisbetter-win32-x64.exe .
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+
+  publish-npm:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+      - name: Download release binaries
+        run: |
+          VERSION=${{ github.ref_name }}
+          mkdir -p binaries
+          for f in makethisbetter-darwin-arm64 makethisbetter-darwin-x64 makethisbetter-linux-arm64 makethisbetter-linux-x64 makethisbetter-win32-x64.exe; do
+            curl -sL "https://github.com/makethisbetter/cli/releases/download/${VERSION}/${f}" -o "binaries/${f}"
+          done
+          chmod +x binaries/makethisbetter-*
+      - name: Publish platform packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          # Publish each platform package
+          for pkg in cli-npm-darwin-arm64 cli-npm-darwin-x64 cli-npm-linux-arm64 cli-npm-linux-x64 cli-npm-win32-x64; do
+            platform=$(echo $pkg | sed 's/cli-npm-//')
+            binary="makethisbetter-${platform}"
+            [[ "$platform" == "win32-x64" ]] && binary="${binary}.exe"
+
+            mkdir -p "packages/${pkg}/bin"
+            cp "binaries/${binary}" "packages/${pkg}/bin/makethisbetter"
+            [[ "$platform" == "win32-x64" ]] && mv "packages/${pkg}/bin/makethisbetter" "packages/${pkg}/bin/makethisbetter.exe"
+
+            cd "packages/${pkg}"
+            npm publish --access public || true
+            cd ../..
+          done
+      - name: Publish wrapper package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd packages/cli-npm
+          npm publish --access public

@@ -1,0 +1,38 @@
+{
+  "name": "@makethisbetter/cli",
+  "version": "1.1.0",
+  "description": "Make This Better CLI — manage user feedback from your terminal",
+  "bin": {
+    "makethisbetter": "bin/makethisbetter"
+  },
+  "scripts": {
+    "postinstall": "node scripts/install.js"
+  },
+  "optionalDependencies": {
+    "@makethisbetter/cli-darwin-arm64": "1.1.0",
+    "@makethisbetter/cli-darwin-x64": "1.1.0",
+    "@makethisbetter/cli-linux-arm64": "1.1.0",
+    "@makethisbetter/cli-linux-x64": "1.1.0",
+    "@makethisbetter/cli-win32-x64": "1.1.0"
+  },
+  "license": "MIT",
+  "homepage": "https://makethisbetter.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makethisbetter/cli.git"
+  },
+  "keywords": [
+    "cli",
+    "feedback",
+    "ai",
+    "mcp",
+    "claude-code",
+    "cursor"
+  ],
+  "files": [
+    "bin/",
+    "scripts/",
+    "downloaded/",
+    "README.md"
+  ]
+}
