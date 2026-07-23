@@ -1,0 +1,23 @@
+{
+  "name": "@makethisbetter/cli-win32-x64",
+  "version": "2.0.0",
+  "description": "Make This Better CLI binary for Windows x64",
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "bin": {
+    "makethisbetter": "bin/makethisbetter.exe"
+  },
+  "files": [
+    "bin/"
+  ],
+  "license": "MIT",
+  "homepage": "https://makethisbetter.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makethisbetter/cli.git"
+  }
+}
