@@ -1,0 +1,4 @@
+# Leading slash anchors to this file's own directory, so these work both in the
+# monorepo (packages/cli/) and in the squashed public repo (repo root).
+/makethisbetter
+/makethisbetter-*
