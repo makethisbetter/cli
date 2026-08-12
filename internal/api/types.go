@@ -48,10 +48,9 @@ type Feedback struct {
 	OS                   *string            `json:"os"`
 	ConsoleErrors        []json.RawMessage  `json:"console_errors"`
 	TargetElement        json.RawMessage    `json:"target_element"`
-	ReporterEmail        *string            `json:"reporter_email"`
-	ReporterName         *string            `json:"reporter_name"`
-	ReporterExternalID   *string            `json:"reporter_external_id"`
-	Status               string             `json:"status"`
+	ReporterEmail *string `json:"reporter_email"`
+	ReporterName  *string `json:"reporter_name"`
+	Status        string  `json:"status"`
 	Labels               []string           `json:"labels"`
 	Priority             string             `json:"priority"`
 	UpvotesCount         int                `json:"upvotes_count"`
@@ -86,6 +85,10 @@ type Feedback struct {
 	AITriageStatus        *string `json:"ai_triage_status"`
 	AITriageError         *string `json:"ai_triage_error"`
 	AIClarificationStatus *string `json:"ai_clarification_status"`
+	ModerationStatus      *string `json:"moderation_status"`
+	ModerationCategory    *string `json:"moderation_category"`
+	ModerationReason      *string `json:"moderation_reason"`
+	ModerationError       *string `json:"moderation_error"`
 
 	// Reproducing a layout bug needs the viewport, not just the browser string.
 	ScreenWidth      *int    `json:"screen_width"`

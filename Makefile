@@ -1,6 +1,6 @@
 BINARY := makethisbetter
 MODULE := github.com/makethisbetter/cli
-VERSION := 1.9.0
+VERSION := 1.9.1
 LDFLAGS := -ldflags "-X $(MODULE)/cmd.version=$(VERSION)"
 
 .PHONY: build test clean cross-compile lint

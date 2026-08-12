@@ -1,7 +1,7 @@
 {
   "name": "@makethisbetter/cli",
-  "version": "1.9.0",
-  "description": "Make This Better CLI — manage user feedback from your terminal",
+  "version": "1.9.1",
+  "description": "Make This Better CLI \u2014 manage user feedback from your terminal",
   "bin": {
     "makethisbetter": "bin/makethisbetter"
   },
