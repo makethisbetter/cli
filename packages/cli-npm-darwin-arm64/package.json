@@ -1,6 +1,6 @@
 {
   "name": "@makethisbetter/cli-darwin-arm64",
-  "version": "1.9.1",
+  "version": "1.10.0",
   "description": "Make This Better CLI binary for macOS Apple Silicon",
   "os": [
     "darwin"

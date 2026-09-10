@@ -14,7 +14,7 @@ import (
 
 var respondCmd = &cobra.Command{
 	Use:   "respond <handle/FB-n>",
-	Short: "Send a response and close received feedback",
+	Short: "Send a response and close received or in-progress feedback",
 	Args:  cobra.ExactArgs(1),
 	RunE:  runRespond,
 }

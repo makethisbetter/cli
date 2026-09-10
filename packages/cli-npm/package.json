@@ -1,7 +1,7 @@
 {
   "name": "@makethisbetter/cli",
-  "version": "1.9.1",
-  "description": "Make This Better CLI \u2014 manage user feedback from your terminal",
+  "version": "1.10.0",
+  "description": "Make This Better CLI — manage user feedback from your terminal",
   "bin": {
     "makethisbetter": "bin/makethisbetter"
   },
@@ -10,11 +10,11 @@
     "test": "node --test test/*.test.js"
   },
   "optionalDependencies": {
-    "@makethisbetter/cli-darwin-arm64": "1.9.0",
-    "@makethisbetter/cli-darwin-x64": "1.9.0",
-    "@makethisbetter/cli-linux-arm64": "1.9.0",
-    "@makethisbetter/cli-linux-x64": "1.9.0",
-    "@makethisbetter/cli-win32-x64": "1.9.0"
+    "@makethisbetter/cli-darwin-arm64": "1.10.0",
+    "@makethisbetter/cli-darwin-x64": "1.10.0",
+    "@makethisbetter/cli-linux-arm64": "1.10.0",
+    "@makethisbetter/cli-linux-x64": "1.10.0",
+    "@makethisbetter/cli-win32-x64": "1.10.0"
   },
   "license": "MIT",
   "homepage": "https://makethisbetter.dev",

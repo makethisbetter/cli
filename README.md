@@ -187,7 +187,7 @@ makethisbetter feedback respond acme/FB-1 --body-file ./response.txt
 makethisbetter feedback respond acme/FB-1 --body-file ./response.txt --subject "Export help"
 ```
 
-Sends one final One-way Reporter Notice and closes received Feedback as
+Sends one final One-way Reporter Notice and closes received or in-progress Feedback as
 `responded`. `--body-file` is required and accepts a UTF-8 file or `-` for
 stdin; no inline-body or editor mode is provided. Omit `--subject` to generate
 the subject in the Reporter Language, falling back to English when unsupported.

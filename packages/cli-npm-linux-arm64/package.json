@@ -1,6 +1,6 @@
 {
   "name": "@makethisbetter/cli-linux-arm64",
-  "version": "1.9.1",
+  "version": "1.10.0",
   "description": "Make This Better CLI binary for Linux ARM64",
   "os": [
     "linux"

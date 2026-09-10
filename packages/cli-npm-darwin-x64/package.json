@@ -1,6 +1,6 @@
 {
   "name": "@makethisbetter/cli-darwin-x64",
-  "version": "1.9.1",
+  "version": "1.10.0",
   "description": "Make This Better CLI binary for macOS Intel",
   "os": [
     "darwin"
